@@ -1,0 +1,10 @@
+define::stream_init
+  use::["guild_chain", "sensors.logic"]
+  compile_mode ::= transproof
+  route_exec ::= Celarion_StreamNode_Start
+
+on_boot::[
+  verify::"modules.sensorproof.init_sensor_map"
+  proof(load_success)::by(init_map)::when(boot_trigger)::validate
+  execute::sensors.logic.run_network
+]
