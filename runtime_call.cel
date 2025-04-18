@@ -1,0 +1,12 @@
+# Celarion Runtime Entry
+
+::runtime_entry
+input_hook => DirectiveParser
+flow_sequence => [
+  GrammarWeaver,
+  TokenRegistrar,
+  ShaderHighlightSync,
+  Celarion.StackEngine
+]
+
+runtime_exec => StreamNode.Trigger("init_map")
