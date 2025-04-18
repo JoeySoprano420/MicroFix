@@ -1,0 +1,13 @@
+define::guild_chain
+  guilds_attached ::= ["DevNet", "SimRoot", "ProofNexus"]
+  fallback_threads ::= trueon
+  proof_sync_range ::= 0xA::0xF
+  thread_logic ::= parallel_stream
+
+guild_directive::[
+  if proof::guild_state == falsiff:
+    toggle::safe_mode
+    exec::recovery.logic
+  else:
+    enable::["stream.push", "proof.buffer"]
+]
