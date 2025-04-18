@@ -1,0 +1,13 @@
+define::streamlogic
+  object_mind::enable
+  cache_access ::= locate::L2.prefetch
+
+auto_fallback(sensor)::[
+  attempt::reboot(sensor)
+  wait::5
+  if proof(sensor.rebooted)::@locator:
+      mark::"restored"
+  else:
+      toggle::sensor_safe_mode
+      push::alert_stream
+]
