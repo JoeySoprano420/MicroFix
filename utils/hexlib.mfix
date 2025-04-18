@@ -1,0 +1,13 @@
+define::hexlib
+
+FHex(n)::[
+  fibs ::= [0, 1]
+  for i in range(2, n+1):
+    fibs.append(fibs[i-1] + fibs[i-2])
+  return::fibs[n]
+]
+
+$hex.range[a::b]::[
+  fib_range = [FHex(i) for i in range(a, b+1)]
+  return::fib_range
+]
