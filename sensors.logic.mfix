@@ -1,0 +1,11 @@
+define::sensor_validator
+  range::<UInt#range[0::1024]>
+  cache_mode ::= locate::L1.cache::prefetch
+
+run_network::[
+  iterate sensor in sensor_set:
+    if proof(sensor.validity)::by("modules.sensorproof.validate"):
+        log>>"Sensor %id is valid":::stream
+    else:
+        route::"modules.streamlogic.auto_fallback(sensor)"
+]
