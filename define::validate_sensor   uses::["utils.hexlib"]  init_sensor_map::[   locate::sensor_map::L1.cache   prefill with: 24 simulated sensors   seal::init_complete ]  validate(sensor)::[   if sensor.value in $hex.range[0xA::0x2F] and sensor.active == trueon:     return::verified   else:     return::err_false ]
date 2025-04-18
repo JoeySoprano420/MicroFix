@@ -1,0 +1,15 @@
+define::validate_sensor
+  uses::["utils.hexlib"]
+
+init_sensor_map::[
+  locate::sensor_map::L1.cache
+  prefill with: 24 simulated sensors
+  seal::init_complete
+]
+
+validate(sensor)::[
+  if sensor.value in $hex.range[0xA::0x2F] and sensor.active == trueon:
+    return::verified
+  else:
+    return::err_false
+]
